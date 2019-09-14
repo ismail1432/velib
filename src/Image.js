@@ -4,8 +4,8 @@ class Image extends React.Component {
     render() {
       return  <div>
 
-        <h1>Diaporama</h1>
-        <img src={this.props.img}/>
+        <h1>V-Libre !</h1>
+        <img src={this.props.img} width="800" height="400"/>
         <br/>
         </div>
 

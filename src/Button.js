@@ -2,9 +2,8 @@ import React from 'react';
 
 class Button extends React.Component{
     render() {
-        return <button onClick={this.props.action}>
-                {this.props.content}
-            </button>
+        return <a className= "waves-effect waves-light btn-large" onClick={this.props.action}>
+            <i className="material-icons left">{this.props.icon}</i></a>
     }
 }
 
