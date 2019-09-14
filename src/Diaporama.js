@@ -1,35 +1,45 @@
 import React from 'react';
+import Image from './Image';
 
 class Diaporama extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            image: 0,
+            current: 0,
         };
+        this.nextImage = this.nextImage.bind(this);
+        this.previousImage = this.previousImage.bind(this);
+    }
+
+    nextImage() {
+     this.setState({
+         current : this.state.current +1
+     })
+    }
+
+    previousImage() {
+
+        this.setState({
+            current : this.state.current -1
+        })
     }
 
     render() {
-
-        function nextImage(e) {
-            
-        }
-
-        const imagesList = [
-            'first',
-            'second',
-            'third',
-        ];
+        const imagesList = ['first', 'second', 'third'];
 
         const images = imagesList.map(image =>
             'images/diaporama/velib-'+image+'.jpeg'
         );
 
+        const image = <Image img={images[this.state.current]} />
+
         return <div>
-            <h1>Diaporama</h1>
-            <img src={images[this.state.image]}/>
-            <br/>
-            <button onClick={() => alert('clic')}>
+            {image}
+            <button onClick={this.previousImage}>
+                &#60;&#60;
+            </button>
+            <button onClick={this.nextImage}>
                 >>
             </button>
         </div>
