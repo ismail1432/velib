@@ -8,6 +8,7 @@ class Diaporama extends React.Component {
         super(props);
         this.state = {
             current: 0,
+            images: []
         };
         this.nextImage = this.nextImage.bind(this);
         this.previousImage = this.previousImage.bind(this);
@@ -15,6 +16,13 @@ class Diaporama extends React.Component {
         this.play = this.play.bind(this);
         this.imagesList = ['first', 'second', 'third'];
         this.total = this.imagesList.length - 1;
+    }
+
+    componentDidMount(){
+        const images = this.imagesList.map(image =>
+            'images/diaporama/velib-' + image + '.jpeg'
+        );
+        this.setState({images})
     }
 
     nextImage() {
@@ -36,15 +44,10 @@ class Diaporama extends React.Component {
 
     stop() {
         clearInterval(this.diapoRun)
-        console.log('stppp')
     }
 
     render() {
-        const images = this.imagesList.map(image =>
-            'images/diaporama/velib-' + image + '.jpeg'
-        );
-        const image = <Image img={images[this.state.current]}/>
-        this.play()
+        const image = <Image img={this.state.images[this.state.current]} index={this.state.current}/>
         return <div>
             {image}
             <Button action={this.previousImage} icon='fast_rewind'/>
