@@ -23,6 +23,7 @@ class Diaporama extends React.Component {
             'images/diaporama/velib-' + image + '.jpeg'
         );
         this.setState({images})
+        this.play()
     }
 
     nextImage() {
