@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import Button from "../Button";
 
+const START_MINUTES = 20;
+
 class BookingResume extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            minutes: 20,
+            minutes: START_MINUTES,
             seconds: 0
         }
     }
@@ -21,8 +23,8 @@ class BookingResume extends React.Component {
 
     chrono = () => {
         setInterval(() => {
-            if (this.state.minutes == 20 && this.state.seconds == 0) {
-                let minutes = 19;
+            if (this.state.minutes == START_MINUTES && this.state.seconds == 0) {
+                let minutes = this.state.minutes - 1;
                 let seconds = 59;
                 this.setState({
                     minutes: minutes,
@@ -38,7 +40,6 @@ class BookingResume extends React.Component {
                 })
             } else {
                 let seconds = this.state.seconds - 1;
-                console.log(seconds)
                 this.setState({
                     seconds: seconds
                 })
