@@ -6,7 +6,6 @@ class Image extends React.Component {
         <img className={"circle"} src={this.props.img} width="800" height="400"/>
         <br/>
         </div>
-
     }
 }
 

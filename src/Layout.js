@@ -1,5 +1,5 @@
 import React from 'react';
-import Diaporama from './Diaporama';
+import Diaporama from './Diaporama/Diaporama';
 import MapContainer from './Maps/MapContainer';
 import BookingForm from './Booking/BookingForm';
 import BookingResume from './Booking/BookingResume';
@@ -42,6 +42,7 @@ class Layout extends React.Component {
     }
 
     cancelBooking() {
+        this.child.killChrono()
         this.setState({
             displayResume: 'none',
             displayBookingForm: 'none',
