@@ -35,42 +35,54 @@ class BookingResume extends React.Component {
         localStorage.setItem('seconds', this.state.seconds)
     }
 
-    chrono = () => {
+    chrono = (chronoInStorage, resetChrono) => {
+        if (chronoInStorage) {
+            this.setState({
+                minutes: localStorage.getItem('minutes'),
+                seconds: localStorage.getItem('seconds')
+            })
+        }
+        if (resetChrono) {
+            this.killChrono()
+        }
+
         this.chronoRun = setInterval(() => {
-            if (this.state.minutes == START_MINUTES && this.state.seconds == 0) {
-                let minutes = this.state.minutes - 1;
-                let seconds = 59;
-                this.setState({
-                    minutes: minutes,
-                    seconds: seconds
-                })
+            var minutes = this.state.minutes
+            var seconds = this.state.seconds
 
-            } else if (this.state.seconds == 0) {
-                let minutes = this.state.minutes--;
-                let seconds = 59;
-                this.setState({
-                    minutes: minutes,
-                    seconds: seconds
-                })
+            if (minutes === 0 && seconds === 0) {
+                this.killChrono()
+                this.cancelBooking()
+                return;
+            } else if (this.state.minutes === START_MINUTES && this.state.seconds === 0) {
+                minutes = this.state.minutes - 1;
+                seconds = 59;
+
+            } else if (this.state.seconds === 0) {
+                minutes = this.state.minutes--;
+                seconds = 59;
             } else {
-                let seconds = this.state.seconds - 1;
-                this.setState({
-                    seconds: seconds
-                })
+                seconds = this.state.seconds - 1;
             }
-        }, 1000);
 
-        this.saveInStorage()
+            this.setState({
+                minutes: minutes,
+                seconds: seconds
+            })
+            this.saveInStorage()
+        }, 1000);
     }
 
     render() {
         return <div className={"row"} style={{display: this.props.displayResume}}>
             <div className="card-panel">
-                <p className="flow-text blue-text text-darken-2">Congratulations <span
-                    className={'red-text text-darken-2'}> {this.props.name}</span> ! <br/>
-                    Your bike is booked for {this.state.minutes} minutes {this.state.seconds}{ this.state.seconds == 0 ?'0':''} seconds
+                <p className="flow-text blue-text text-darken-2">
+                    {localStorage.getItem('user') === null ? 'Congratulations' : 'Hurry Up'}
+                    <span className={'red-text text-darken-2'}> {this.props.name}</span> ! <br/>
+                    Your bike is booked
+                    for {this.state.minutes} minutes {this.state.seconds}{this.state.seconds === 0 ? '0' : ''} seconds
                     at the station: <span
-                        className={'red-text text-darken-2'}>{this.props.stationName}</span></p>
+                    className={'red-text text-darken-2'}>{this.props.stationName}</span></p>
                 <p>
                     <Button action={this.cancelBooking} icon={'cancel'} btnSize={'large'}/>
                 </p>
