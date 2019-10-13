@@ -11,6 +11,7 @@ class Layout extends React.Component {
             isBookingDisplayed: false,
             mapColSize: 12,
             stationName: '',
+            stationNameForm: '',
             displayResume: 'none',
             displayBookingForm: 'block',
             name: ''
@@ -19,6 +20,18 @@ class Layout extends React.Component {
         this.toggleBookingFormDisplayed = this.toggleBookingFormDisplayed.bind(this)
         this.toggleDisplayBookingResume = this.toggleDisplayBookingResume.bind(this)
         this.cancelBooking = this.cancelBooking.bind(this)
+    }
+
+    componentDidMount = () => {
+        if (localStorage.getItem('minutes') !== null && localStorage.getItem('seconds') !== null) {
+            console.log()
+            this.setState({
+                name: localStorage.getItem('user'),
+                stationName: localStorage.getItem('station'),
+                displayResume: 'block'
+            })
+            this.child.chrono(true, false)
+        }
     }
 
     toggleBookingFormDisplayed(stationName) {
@@ -30,18 +43,20 @@ class Layout extends React.Component {
             })
         }
 
-        this.setState({stationName})
+        this.setState({stationNameForm: stationName})
     }
 
     toggleDisplayBookingResume(event) {
-        this.child.chrono()
+        this.child.chrono(false, true)
         this.setState({
             displayResume: 'block',
-            name: event.target.name.value
+            name: event.target.name.value,
+            stationName: this.state.stationNameForm
         })
     }
 
     cancelBooking() {
+        localStorage.clear();
         this.child.killChrono()
         this.setState({
             displayResume: 'none',
@@ -58,7 +73,8 @@ class Layout extends React.Component {
 
         if (isBookingDisplayed) {
             bookingForm = <div className={"col m4"}>
-                <BookingForm displayBookingForm={this.state.displayBookingForm} stationName={this.state.stationName} toggleDisplayBookingResume={this.toggleDisplayBookingResume}/>
+                <BookingForm displayBookingForm={this.state.displayBookingForm} stationName={this.state.stationNameForm}
+                             toggleDisplayBookingResume={this.toggleDisplayBookingResume}/>
             </div>
         }
 
