@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from './Image';
-import Button from './Button';
+import Button from '../Utils/Button';
 
 class Diaporama extends React.Component {
 
@@ -51,10 +51,10 @@ class Diaporama extends React.Component {
         const image = <Image img={this.state.images[this.state.current]} index={this.state.current}/>
         return <div>
             {image}
-            <Button action={this.previousImage} icon='fast_rewind'/>
-            <Button action={this.play} icon='play_arrow'/>
-            <Button action={this.nextImage} icon='fast_forward'/>
-            <Button action={this.stop} icon='stop'/>
+            <Button action={this.previousImage} icon='fast_rewind' btnSize={'large'}/>
+            <Button action={this.play} icon='play_arrow' btnSize={'large'}/>
+            <Button action={this.nextImage} icon='fast_forward' btnSize={'large'}/>
+            <Button action={this.stop} icon='stop' btnSize={'large'}/>
         </div>
     }
 }

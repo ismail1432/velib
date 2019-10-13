@@ -1,5 +1,5 @@
 import React from 'react';
-import Diaporama from './Diaporama';
+import Diaporama from './Diaporama/Diaporama';
 import MapContainer from './Maps/MapContainer';
 import BookingForm from './Booking/BookingForm';
 import BookingResume from './Booking/BookingResume';
@@ -34,6 +34,7 @@ class Layout extends React.Component {
     }
 
     toggleDisplayBookingResume(event) {
+        this.child.chrono()
         this.setState({
             displayResume: 'block',
             name: event.target.name.value
@@ -41,6 +42,7 @@ class Layout extends React.Component {
     }
 
     cancelBooking() {
+        this.child.killChrono()
         this.setState({
             displayResume: 'none',
             displayBookingForm: 'none',
@@ -65,6 +67,7 @@ class Layout extends React.Component {
             stationName={this.state.stationName}
             displayResume={this.state.displayResume}
             action={this.cancelBooking}
+            onRef={ref => (this.child = ref)}
         />
 
         return <div>
