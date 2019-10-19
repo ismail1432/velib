@@ -17,6 +17,8 @@ class BookingResume extends React.Component {
     }
 
     cancelBooking = () => {
+        localStorage.clear();
+        this.killChrono()
         this.props.action()
     }
 

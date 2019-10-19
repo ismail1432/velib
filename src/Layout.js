@@ -24,7 +24,6 @@ class Layout extends React.Component {
 
     componentDidMount = () => {
         if (localStorage.getItem('minutes') !== null && localStorage.getItem('seconds') !== null) {
-            console.log()
             this.setState({
                 name: localStorage.getItem('user'),
                 stationName: localStorage.getItem('station'),
@@ -56,8 +55,6 @@ class Layout extends React.Component {
     }
 
     cancelBooking() {
-        localStorage.clear();
-        this.child.killChrono()
         this.setState({
             displayResume: 'none',
             displayBookingForm: 'none',
@@ -72,10 +69,14 @@ class Layout extends React.Component {
         let bookingResume;
 
         if (isBookingDisplayed) {
-            bookingForm = <div className={"col m4"}>
-                <BookingForm displayBookingForm={this.state.displayBookingForm} stationName={this.state.stationNameForm}
-                             toggleDisplayBookingResume={this.toggleDisplayBookingResume}/>
-            </div>
+            bookingForm =
+                <div className={"col m4"}>
+                    <BookingForm
+                        displayBookingForm={this.state.displayBookingForm}
+                        stationName={this.state.stationNameForm}
+                        toggleDisplayBookingResume={this.toggleDisplayBookingResume}
+                    />
+                </div>
         }
 
         bookingResume = <BookingResume
