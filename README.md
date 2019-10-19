@@ -13,6 +13,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![demo screen](public/images/velib-screen.png)
 
+#### Installation
+
+```ssh
+git clone https://github.com/ismail1432/velib.git
+cd velib
+npm start
+```
+
 #### Data comes from [Open data Paris](https://opendata.paris.fr/)
 
 
