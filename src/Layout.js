@@ -89,7 +89,7 @@ class Layout extends React.Component {
 
         return <div>
             <div className={"row"}>
-                <h1>V-Liberty !</h1>
+                <h1 className={"homeTitle"}>V-Liberty !</h1>
                 <Diaporama/>
             </div>
             {bookingResume}
