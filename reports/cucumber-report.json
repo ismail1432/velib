@@ -1,0 +1,74 @@
+[
+  {
+    "description": "  As an internet User\n  In order to book a cycle I want to see a Diaporama and a map with available cycles",
+    "elements": [
+      {
+        "id": "display-homepage;as-a-user-i-want-to-see-a-title,-a-diaporama-and-a-map.",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "As a User I want to see a title, a diaporama and a map.",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I access to url \"http://localhost:3000\"",
+            "result": {
+              "status": "passed",
+              "duration": 9174611713
+            },
+            "line": 6,
+            "match": {
+              "location": "/var/www/html/velib/features/step-definitions/homepage.js:3"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I should see a title \"V-Liberty !\"",
+            "result": {
+              "status": "passed",
+              "duration": 21982886
+            },
+            "line": 7,
+            "match": {
+              "location": "/var/www/html/velib/features/step-definitions/homepage.js:14"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I can see a Map",
+            "result": {
+              "status": "passed",
+              "duration": 5550385
+            },
+            "line": 8,
+            "match": {
+              "location": "/var/www/html/velib/features/step-definitions/homepage.js:23"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 3705965308
+            },
+            "hidden": true,
+            "match": {
+              "location": "/var/www/html/velib/node_modules/selenium-cucumber-js/runtime/world.js:250"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "display-homepage",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Display homepage",
+    "tags": [],
+    "uri": "/var/www/html/velib/features/homepage.feature"
+  }
+]
