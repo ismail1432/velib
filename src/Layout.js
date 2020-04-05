@@ -24,7 +24,6 @@ class Layout extends React.Component {
 
     componentDidMount = () => {
         if (localStorage.getItem('minutes') !== null && localStorage.getItem('seconds') !== null) {
-            console.log()
             this.setState({
                 name: localStorage.getItem('user'),
                 stationName: localStorage.getItem('station'),

@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import {Map, TileLayer, Marker, Popup, Tooltip} from 'react-leaflet'
+import {Map, TileLayer, Marker, Tooltip} from 'react-leaflet'
 import Axios from 'axios';
+
+const API_ENDPOINT = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&rows=200&facet=overflowactivation&facet=creditcard&facet=kioskstate&facet=station_state';
 
 class MapContainer extends React.Component {
     constructor(props) {
@@ -20,7 +22,7 @@ class MapContainer extends React.Component {
     }
 
     componentDidMount() {
-        Axios.get(`https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&rows=200&facet=overflowactivation&facet=creditcard&facet=kioskstate&facet=station_state`)
+        Axios.get(API_ENDPOINT)
             .then(response => {
                 const stations = response.data.records;
                 this.setState({stations});
@@ -29,11 +31,11 @@ class MapContainer extends React.Component {
 
     render() {
         const marker = this.state.stations.map(station =>
-            <Marker onClick={() => this.toggleBookingFormDisplayed(station.fields.station_name)}
+            <Marker onClick={() => this.toggleBookingFormDisplayed(station.fields.name)}
                 key={station.recordid}
                     position={[station.geometry.coordinates[1], station.geometry.coordinates[0]]}>
                 <Tooltip>
-                    {station.fields.station_name}
+                    {station.fields.name}
                 </Tooltip>
             </Marker>
         );
