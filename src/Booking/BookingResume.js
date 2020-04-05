@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 import Button from "../Utils/Button";
+import { useSelector, useDispatch } from 'react-redux';
+import run  from '../actions';
 
 const START_MINUTES = 20;
 
 class BookingResume extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -14,6 +17,7 @@ class BookingResume extends React.Component {
 
     componentDidMount = () => {
         this.props.onRef(this)
+       // const chronometer = useSelector(state => state.minutes);
     }
 
     cancelBooking = () => {
