@@ -1,10 +1,14 @@
-const bookingReducer = (state, action) => {
-    state = 150;
-    //state.seconds = 11111;
+const initialState = {
+    minutes: 20,
+    seconds: 0
+}
 
+const bookingReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'RUN':
-           /* if (action.payload.minutes === 0 && action.payload.seconds === 0) {
+            console.log(action.type);
+
+            if (action.payload.minutes === 0 && action.payload.seconds === 0) {
                 // this.killChrono()
                 // this.cancelBooking()
                 return;
@@ -16,8 +20,14 @@ const bookingReducer = (state, action) => {
                 state.minutes = this.state.minutes--;
                 state.seconds = 59;
             } else {
-                state.seconds = action.payload.seconds === 0;
-            }*/
+                state.seconds = action.payload.seconds - 1;
+            }
+
+        // case 'STOP':
+        //     console.log(action.type);
+        //
+        //     state.minutes = 20;
+        //     state.seconds = 0;
         default:
             return state;
     }

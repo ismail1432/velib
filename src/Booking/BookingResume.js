@@ -1,9 +1,20 @@
 import React, {Component} from 'react'
 import Button from "../Utils/Button";
-import { useSelector, useDispatch } from 'react-redux';
-import run  from '../actions';
+import { connect } from 'react-redux';
+import { run, stop } from '../actions';
 
 const START_MINUTES = 20;
+
+const mapStateToProps = (state) => {
+    return {
+        bookingReducer: state.bookingReducer
+    }
+};
+
+const mapDispatchToProps = {
+    runChrono: run,
+    stopChrono: stop
+};
 
 class BookingResume extends React.Component {
 
@@ -11,13 +22,12 @@ class BookingResume extends React.Component {
         super(props);
         this.state = {
             minutes: START_MINUTES,
-            seconds: 0
+            seconds: 0,
         }
     }
 
     componentDidMount = () => {
         this.props.onRef(this)
-       // const chronometer = useSelector(state => state.minutes);
     }
 
     cancelBooking = () => {
@@ -26,10 +36,7 @@ class BookingResume extends React.Component {
 
     killChrono = () => {
         clearInterval(this.chronoRun)
-        this.setState({
-            minutes: START_MINUTES,
-            seconds: 0
-        })
+        //this.props.stopChrono('STOP')
     }
 
     saveInStorage = () => {
@@ -51,23 +58,13 @@ class BookingResume extends React.Component {
         }
 
         this.chronoRun = setInterval(() => {
-            var minutes = this.state.minutes
-            var seconds = this.state.seconds
+            var minutes = this.props.bookingReducer.minutes
+            var seconds = this.props.bookingReducer.seconds
 
-            if (minutes === 0 && seconds === 0) {
-                this.killChrono()
-                this.cancelBooking()
-                return;
-            } else if (this.state.minutes === START_MINUTES && this.state.seconds === 0) {
-                minutes = this.state.minutes - 1;
-                seconds = 59;
-
-            } else if (this.state.seconds === 0) {
-                minutes = this.state.minutes--;
-                seconds = 59;
-            } else {
-                seconds = this.state.seconds - 1;
-            }
+            console.log(this.props.bookingReducer.seconds)
+            this.props.runChrono('RUN', {
+                minutes, seconds
+            });
 
             this.setState({
                 minutes: minutes,
@@ -95,4 +92,7 @@ class BookingResume extends React.Component {
     }
 }
 
-export default BookingResume
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(BookingResume);
