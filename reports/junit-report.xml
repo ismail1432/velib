@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="display-homepage;as-a-user-i-want-to-see-a-title,-a-diaporama-and-a-map." tests="3" failures="0" skipped="0">
+        <properties>
+            <property name="URI" value="/var/www/html/velib/features/homepage.feature">
+            </property>
+        </properties>
+        <testcase name="When I access to url &quot;http://localhost:3000&quot;" classname="display-homepage;as-a-user-i-want-to-see-a-title,-a-diaporama-and-a-map." time="9.174611713">
+        </testcase>
+        <testcase name="Then I should see a title &quot;V-Liberty !&quot;" classname="display-homepage;as-a-user-i-want-to-see-a-title,-a-diaporama-and-a-map." time="0.021982886">
+        </testcase>
+        <testcase name="And I can see a Map" classname="display-homepage;as-a-user-i-want-to-see-a-title,-a-diaporama-and-a-map." time="0.005550385">
+        </testcase>
+    </testsuite>
+</testsuites>
